@@ -1,0 +1,120 @@
+/* Content */
+#content {
+	width: 80% ! important;
+	display: inline-block;
+}
+
+/* Body. */
+body {
+	font-size: 12px;
+	margin: 10px 20px;
+}
+
+.sessionHour {
+	padding-right: 5px;
+	font-size: 16px;
+}
+
+/* Page title. */
+#pageTitle {
+	background-color: #097099;
+	color: #fff;
+	text-align: center;
+	font-weight: bold;
+	padding: 5px 0 5px 5px;
+	width: 99%;
+}
+
+/* Menu. */
+#menu {
+	background-color: #094069;
+	color: #fff;
+	text-align: left;
+	padding: 5px 10px 36px 5px;
+	width: 99%;
+	border-radius: 6px;
+}
+
+/* Content. */
+#content {
+	margin: 10px 0;
+	text-align: center;
+	width: 100%;
+}
+
+/* Sidebar. */
+#sidebar {
+	margin-top: 20px;
+	float: left;
+	/* 	background-color: #094069; */
+	width: 20%;
+}
+
+.table {
+	width: 50%;
+	margin: auto;
+}
+
+.table th {
+	text-align: left;
+}
+
+.table td {
+	text-align: left;
+}
+
+.table.wide {
+	width: 90%;
+}
+
+/* Error messages. */
+div.t-error ul {
+	font-weight: bold;
+}
+
+/* General properties. */
+table.billboard {
+	font-size: 16px;
+	width: 60%;
+}
+
+/* "Previous" and "Next" links. */
+div.previousNextLinks {
+	margin-left: 10%;
+	width: 80%;
+	margin-bottom: 10px;
+}
+
+div.previousNextLinks span.previousLink {
+	float: left;
+	text-align: left;
+}
+
+div.previousNextLinks span.nextLink {
+	float: right;
+	text-align: right;
+}
+
+/* Errors */
+div.t-error {
+	text-align: center;
+	margin: auto ! important;
+	border-radius: 4px;
+	margin-bottom: 20px ! important;
+}
+
+IMG.t-error-icon {
+	display: none;
+}
+
+IMG.t-calendar-trigger {
+/* 	display: none; */
+}
+
+/* Footer. */
+#footer {
+	border-top: 1px solid #000;
+	padding-top: 5px;
+	text-align: center;
+	width: 100%;
+}

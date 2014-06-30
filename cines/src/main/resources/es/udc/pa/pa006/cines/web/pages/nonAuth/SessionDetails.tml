@@ -1,0 +1,64 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:pageTitle="title">
+
+<br />
+<t:if test="session">
+
+	<table class="table">
+
+		<tr>
+			<th>${message:title-label}</th>
+			<td>${session.movie.title}</td>
+		</tr>
+
+
+		<tr>
+			<th>${message:duration-label}</th>
+			<td>${session.movie.duration}</td>
+		</tr>
+
+		<tr>
+			<th>${message:price-label}</th>
+			<td><t:output value="session.price" format="format" /></td>
+		</tr>
+
+		<tr>
+			<th>${message:cinemaName-label}</th>
+			<td>${session.room.cinema.name}</td>
+		</tr>
+
+		<tr>
+			<th>${message:roomName-label}</th>
+			<td>${session.room.name}</td>
+		</tr>
+		<tr>
+			<th>${message:avaliableSeats-label}</th>
+			<td>${session.avaliableSeats}</td>
+		</tr>
+	</table>
+
+	<br />
+
+	<t:if test="userSession">
+		<t:If t:test="userSession.isSalesman()" t:negate="true">
+			<t:If t:test="userSession.isAdmin()" t:negate="true">
+				<button class="btn btn-primary" t:type="PageLink"
+					t:page="auth/BuyTickets" t:context="session.sessionMovieId">
+					${message:buy}</button>
+			</t:If>
+		</t:If>
+
+		<p:else>
+			<button class="btn btn-primary" t:type="PageLink"
+				t:page="auth/BuyTickets" t:context="session.sessionMovieId">
+				${message:buy}</button>
+		</p:else>
+	</t:if>
+
+	<p:else>
+		<p>${message:sessionNotFound}</p>
+	</p:else>
+
+</t:if>
+
+</html>

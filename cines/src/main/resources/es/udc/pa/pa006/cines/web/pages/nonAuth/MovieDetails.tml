@@ -1,0 +1,32 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+    xmlns:p="tapestry:parameter"
+	t:type="Layout" t:pageTitle="title">
+<br />
+<t:if test="movie">
+
+	<table class="table">
+	
+	    <tr>
+	        <th>${message:title-label}</th>
+	        <td>${movie.title}</td>
+	    </tr>
+	
+	    <tr>
+	        <th>${message:summary-label}</th>
+	        <td>${movie.summary}</td>
+	    </tr>
+	
+		<tr>
+	        <th>${message:duration-label}</th>
+	        <td>${movie.duration}</td>
+	    </tr>
+
+	</table>
+	        	
+	<p:else>
+		<p>${message:movieNotFound}</p>
+	</p:else>
+
+</t:if>
+
+</html>

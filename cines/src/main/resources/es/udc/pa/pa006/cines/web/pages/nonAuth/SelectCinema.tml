@@ -1,0 +1,42 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:pageTitle="title">
+
+<t:If t:test="favoriteCinema">
+	<h4>
+		${message:favorite} <strong><a href="#" t:type="PageLink"
+			t:page="Index"> ${favoriteCinema.name} </a></strong>
+	</h4>
+</t:If>
+
+<hr />
+<div class="row">
+	<div class="col-md-4"></div>
+	<div class="col-md-4">
+		<form t:type="Form" t:id="selectProvinceForm" class="form-horizontal">
+			<div class="form-group">
+				<t:label for="province" class="col-sm-2 control-label" />
+				<div class="col-sm-10">
+					<t:select t:id="province" class="form-control" model="provinces"
+						t:value="province" t:zone="cinemaZone" t:blankOption="ALWAYS"
+						t:blankLabel="message:choose" t:validate="required" />
+				</div>
+			</div>
+			<br />
+
+			<t:zone t:id="cinemaZone" id="cinemaZone">
+				<div class="form-group">
+					<t:label for="cinema" class="col-sm-2 control-label" />
+					<div class="col-sm-10">
+						<t:select t:id="cinema" model="cinemas" t:value="cinema"
+							class="form-control" t:zone="cinemaZone" name="cinema"
+							t:blankLabel="message:choose" />
+					</div>
+				</div>
+			</t:zone>
+		</form>
+	</div>
+
+	<div class="col-md-4"></div>
+</div>
+
+</html>

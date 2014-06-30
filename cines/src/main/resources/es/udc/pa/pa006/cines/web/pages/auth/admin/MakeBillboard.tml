@@ -1,0 +1,106 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	t:type="Layout" t:pageTitle="title" xmlns:p="tapestry:parameter">
+
+<h2>${message:makebillboard}</h2>
+
+
+<div class="row">
+	<div class="col-md-4"></div>
+	<div class="col-md-4">
+		<form t:type="Form" t:id="selectCinemaForm" t:zone="roomZone"
+			class="form-horizontal">
+			<t:errors />
+
+			<div class="form-group">
+				<t:label for="province" class="col-sm-4 control-label" />
+				<div class="col-sm-8">
+					<t:select t:id="province" class="form-control" model="provinces"
+						t:value="province" t:zone="cinemaZone" t:blankOption="ALWAYS"
+						t:blankLabel="message:choose" t:validate="required" />
+				</div>
+			</div>
+
+			<t:zone t:id="cinemaZone" id="cinemaZone">
+				<div class="form-group">
+					<t:label for="cinema" class="col-sm-4 control-label" />
+					<div class="col-sm-8">
+						<t:select t:id="cinema" model="cinemas" class="form-control"
+							t:value="cinema" t:zone="roomZone" t:blankOption="ALWAYS"
+							t:blankLabel="message:choose" t:validate="required" />
+					</div>
+				</div>
+			</t:zone>
+
+			<div class="form-group">
+				<t:label for="date" class="col-sm-4 control-label" />
+				<div class="col-sm-5">
+					<t:datefield t:id="date" value="today" class="form-control"
+						t:validate="required" />
+				</div>
+				<div class="col-sm-3">
+					<input class="btn btn-primary" type="submit"
+						value="${message:accept}" />
+				</div>
+			</div>
+		</form>
+		<div class="col-md-4"></div>
+	</div>
+</div>
+
+
+<t:zone t:id="roomZone" id="roomZone">
+	<t:If t:test="cinema">
+		<hr />
+		<form t:type="Form" t:id="makeBillboardForm">
+			<div class="table">
+				<t:errors />
+			</div>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>${message:room-label}</th>
+						<th>${message:movie-label}</th>
+						<th>${message:hour-label}</th>
+						<th>${message:minutes-label}</th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr class="billboard" t:type="ajaxformloop" t:id="sessions"
+						source="sessionDtos" t:encoder="sessionDtoEncoder" value="session">
+						<td><t:select t:id="room" value="session.roomId"
+								class="form-control" model="rooms" t:blankOption="ALWAYS"
+								t:blankLabel="message:choose" t:validate="required" /></td>
+						<td><t:select t:id="movie" value="session.movieId"
+								class="form-control" model="movies" t:blankOption="ALWAYS"
+								t:blankLabel="message:choose" t:validate="required" /></td>
+						<td><t:TextField t:value="session.hour" t:id="hour" size="1"
+								class="form-control" t:validate="required, min=0, max=23"
+								maxlength="2" /></td>
+						<td><t:TextField t:value="session.minutes" t:id="minutes"
+								class="form-control" size="2"
+								t:validate="required, min=0, max=60" maxlength="2" /></td>
+
+						<td><t:removerowlink>${message:remove} 
+						<i class="glyphicon glyphicon-remove"></i>
+							</t:removerowlink></td>
+
+						<p:addRow>
+							<td colspan="6"><t:AddRowLink class="btn btn-primary">${message:addRow}</t:AddRowLink>&nbsp;
+								<input class="btn btn-primary" type="submit"
+								value="${message:accept}" /></td>
+						</p:addRow>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+
+		</form>
+	</t:If>
+</t:zone>
+
+</html>

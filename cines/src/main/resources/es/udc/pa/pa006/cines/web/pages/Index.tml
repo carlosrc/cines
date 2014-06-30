@@ -1,0 +1,52 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:pageTitle="title">
+
+<h2>${cinema.name}</h2>
+
+<br />
+
+<div class="row">
+	<div class="col-md-4"></div>
+	<div class="col-md-4">
+		<form t:type="Form" t:id="dateForm">
+			<t:errors />
+			<div class="form-group">
+			<label for="date" class="col-sm-2 control-label"/>
+				<t:Select model="dates" t:value="date" t:id="date"
+					class="form-control" t:zone="billboardZone" t:validate="required" />
+			</div>
+		</form>
+	</div>
+	<div class="col-md-4"></div>
+</div>
+
+<br />
+<t:zone t:id="billboardZone" id="billboardZone">
+	<t:if test="billboardDtos">
+		<table class="table table-hover billboard">
+			<tr>
+				<th>${message:movie-label}</th>
+				<th>${message:session-label}</th>
+			</tr>
+
+			<tr t:type="Loop" t:source="billboardDtos" t:value="billboardDto">
+				<td><a href="#" t:type="PageLink" t:page="nonAuth/MovieDetails"
+					t:context="billboardDto.movie.movieId">
+						${billboardDto.movie.title} </a></td>
+				<td><span class="sessionHour" t:type="Loop"
+					t:source="billboardDto.sessionMovies" t:value="sessionMovie">
+						<span class="label label-primary" t:type="PageLink"
+						t:page="nonAuth/SessionDetails"
+						t:context="sessionMovie.sessionMovieId">${sessionTime}</span>
+				</span>&nbsp;</td>
+			</tr>
+		</table>
+
+		<p:else>
+			<h4>${message:noSessions}.</h4>
+		</p:else>
+
+	</t:if>
+</t:zone>
+
+</html>

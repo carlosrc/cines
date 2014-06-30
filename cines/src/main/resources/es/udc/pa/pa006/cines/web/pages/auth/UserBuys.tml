@@ -1,0 +1,54 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:pageTitle="title">
+
+<br />
+<t:Zone t:id="tableZone" id="tableZone">
+	<t:if test="buys">
+
+		<table class="table wide">
+			<tr>
+				<th>${message:buyId-label}</th>
+				<th>${message:buyDate-label}</th>
+				<th>${message:movieTitle-label}</th>
+				<th>${message:cinemaName-label}</th>
+				<th>${message:tickets-label}</th>
+				<th>${message:dateSession-label}</th>
+			</tr>
+
+			<tr t:type="Loop" t:source="buys" t:value="buy">
+				<td>${buy.buyId}</td>
+				<td>${buyDate}</td>
+				<td>${buy.sessionMovie.movie.title}</td>
+				<td>${buy.sessionMovie.room.cinema.name}</td>
+				<td>${buy.tickets}</td>
+				<td>${dateSession}</td>
+			</tr>
+
+		</table>
+
+		<!-- "Previous" and "Next" links. -->
+		<br />
+		<div class="previousNextLinks">
+			<span class="previousLink"> <t:if test="previousLinkContext">
+					<a t:type="eventLink" t:event="changePage"
+						t:context="previousLinkContext" t:zone="tableZone" href="#"><i
+						class="glyphicon glyphicon-chevron-left"></i>
+						${message:link-previous}</a>
+				</t:if>
+			</span> <span class="nextLink"> <t:if test="nextLinkContext">
+					<a t:type="eventLink" t:event="changePage"
+						t:context="nextLinkContext" t:zone="tableZone" href="#">${message:link-next}
+						<i class="glyphicon glyphicon-chevron-right"></i>
+					</a>
+				</t:if>
+			</span>
+		</div>
+
+		<p:else>
+			<h4>${message:noBuys}</h4>
+		</p:else>
+
+	</t:if>
+</t:Zone>
+
+</html>

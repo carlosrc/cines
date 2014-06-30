@@ -1,0 +1,74 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:pageTitle="title">
+
+<br />
+
+<t:Zone t:id="tableZone" id="tableZone">
+	<t:if test="buy">
+
+		<table class="table">
+			<tr>
+				<th>${message:delivered-label}</th>
+				<t:If t:test="buy.delivered">
+					<td>${message:delivered-true}</td>
+					<p:else>
+						<td>${message:delivered-false}</td>
+					</p:else>
+				</t:If>
+			</tr>
+
+			<tr>
+				<th>${message:tickets-label}</th>
+				<td>${buy.tickets}</td>
+			</tr>
+			<tr>
+				<th>${message:buyDate-label}</th>
+				<td>${buyDate}</td>
+			</tr>
+
+			<tr>
+				<th>${message:movieTitle-label}</th>
+				<td>${buy.sessionMovie.movie.title}</td>
+			</tr>
+			<tr>
+				<th>${message:dateSession-label}</th>
+				<td>${dateSession}</td>
+			</tr>
+			<tr>
+				<th>${message:cinemaName-label}</th>
+				<td>${buy.sessionMovie.room.cinema.name}</td>
+			</tr>
+			<tr>
+				<th>${message:roomName-label}</th>
+				<td>${buy.sessionMovie.room.name}</td>
+			</tr>
+			<tr>
+				<th>${message:cardNumber-label}</th>
+				<td>${buy.cardNumber}</td>
+			</tr>
+		</table>
+
+		<t:If t:test="userSession">
+			<t:If t:test="userSession.isSalesman()">
+				<t:If t:test="buy.delivered" t:negate="true">
+					<tr>
+						<th><form t:type="Form" t:id="deliverTicketsForm"
+								t:zone="tableZone" class="table">
+								<br />
+								<t:errors />
+								<input class="btn btn-primary" type="submit"
+									value="${message:deliver}" />
+							</form></th>
+					</tr>
+				</t:If>
+			</t:If>
+		</t:If>
+
+		<p:else>
+			<h4>${message:buyNotFound}</h4>
+		</p:else>
+
+	</t:if>
+</t:Zone>
+
+</html>

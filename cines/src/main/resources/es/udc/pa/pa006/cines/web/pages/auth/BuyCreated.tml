@@ -1,0 +1,8 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	t:type="Layout" t:pageTitle="title">
+	
+<br /> 
+<h4>${message:title}</h4>
+<h3>${message:buyId-label}: <strong>${buyId}</strong></h3>
+
+</html>
